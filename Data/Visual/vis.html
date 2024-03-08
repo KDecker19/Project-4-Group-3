@@ -3,21 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Breed Visualization</title>
-    <!-- Include Plotly.js -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
+    <title>Dog Breed Selector</title>
+    <style>
+        #breed-selector {
+            margin-bottom: 20px;
+        }
 
-<h1>Dog Breed Visualization</h1>
+        #breed-image {
+            max-width: 300px;
+            height: auto;
+            margin-top: 10px;
 
-<div id="plot" style="width: 600px; height: 400px;"></div>
+        }
+    </style>
+    </head>
+    <body>
 
-<script>
-    // JavaScript code for visualization goes here
-    // Fetch data from the database using fetch() or AJAX
-    // Use Plotly.js to create visualizations
-</script>
+    <h1>Dog Breed Selector</h1>
 
-</body>
-</html>
+    <!-- Breed selector dropdown -->
+    <select id="breed-selector">
+        <option value="">Select a breed...</option>
+        <!-- Add breed options dynamically using JavaScript -->
+    </select>
+    
+    <!-- Breed name display area -->
+    <p id="breed-name"></p>
+    
+    <!-- Breed image display area -->
+    <img id="breed-image" src="" alt="Dog Breed Image">
+    
+    <script>
+        // Function to populate breed selector dropdown
+        function populateBreedSelector() {
+            const selector = document.getElementById('breed-selector');
+            // List of dog breeds (you can replace this with your own list)
+            const breeds = ['Labrador Retriever', 'German Shepherd', 'Golden Retriever', 'Bulldog', 'Beagle'];
+            breeds.forEach(breed => {
+                const option = document.createElement('option');
+                option.value = breed;
+                option.textContent = breed;
+                selector.appendChild(option);
+            });
+        }
+    
+        // Function to display breed name and image upon selection
+        function displayBreedInfo(breedName) {
+            const breedNameElement = document.getElementById('breed-name');
+            const breedImageElement = document.getElementById('breed-image');
+            
+            // Display breed name
+            breedNameElement.textContent = `Selected Breed: ${breedName}`;
+    
+            // Set image source based on the selected breed
+            const imageUrl = `https://placedog.net/300/200?random&breed=${breedName.replace(' ', '-')}`;
+            breedImageElement.src = imageUrl;
+        }
+    
+        // Populate breed selector dropdown on page load
+        populateBreedSelector();
+    
+        // Event listener for breed selector change
+        document.getElementById('breed-selector').addEventListener('change', function(event) {
+            const selectedBreed = event.target.value;
+            if (selectedBreed) {
+                displayBreedInfo(selectedBreed);
+            } else {
+                document.getElementById('breed-name').textContent = '';
+                document.getElementById('breed-image').src = '';
+            }
+        });
+    </script>
+    
+    </body>
+    </html>
