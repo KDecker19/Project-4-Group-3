@@ -5,75 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Breed Selector</title>
     <style>
-        #breed-selector {
-            margin-bottom: 20px;
-        }
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900');
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
 
-        #breed-image {
-            max-width: 300px;
-            height: auto;
-            margin-top: 10px;
+body {
+  font-family: 'Roboto';
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(-45deg, #183850 0, #183850 25%, #192c46 50%, #22254c 75%, #22254c 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin-top: 100px;
+  margin-left: 20px;
+  color: #ecf0f1;
+}
 
+.container {
+  margin: 0 auto;
+  display: table;
+}
+/* selecionator */
+.selectionator {
+  position: relative;
+  border-radius: 2px;
+  background-color: #2c3e50;
+  color: #95a5a6;
+  perspective: 800px;
+  width: 200px;
+  /*
+  &:before {
+  content: "";
+  background-color: transparent;
+  width: 100%;
+  height: 2.5em;
+  position: absolute;
+  background-image: linear-gradient(top, #000, rgba(0,0,0,0));
+}
+  */
+
+  .search {
+    position: relative;
+    display: block;
+    border: 0px;
+    width: 100%;
+    padding: 1em;
+    outline: none;
+    color: #FFF;
+    background-color: #16a085;
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+    transform-origin: 50% 0%;
+    transition: transform .3s;
+    border-radius: 2px;
+    z-index: 99;
+    .overlay {
+      width: 100%;
+      background-color: #f00;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 100%);
+      opacity: 0;
+    }
+    .shadow {
+      position: absolute;
+      height: 15px;
+      width: 100%;
+      left: 0;
+      bottom: -15px;
+      transform-origin: center bottom;
+      transform: scale(0.95, 1) translate3d(0, 0px, 0);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0;
+    }
+    &:before {
+      content: "\f078";
+      display: inline-block;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1.5;
+      float: right;
+      vertical-align: middle;
+    }
+  }
+  &:hover, &.opened {
+    .search {
+      transform: rotate3d(1,0,0,60deg);
+      .overlay, .shadow {
+        opacity: 1;
+      }
+    }
+    .menu {
+      height: 200px;
+      opacity: 1;
+    }
+  }
+  .menu {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    height: 0px;
+    border-radius: 0px;
+    background-color: #2c3e50;
+    transition: all 0.3s ease;
+    opacity: 0;
+    border: 1px solid #16a085;
+    border-top: none;
+  }
+  ul.list {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 0px;
+    backface-visibility: hidden;
+    transition: all 0.3s ease;
+    opacity: 0.75;
+    width: 100%;
+    height: 100%;
+    > li span.header {
+      display: block;
+      padding: 6px;
+      background-color: #34495e;
+      font-weight: 200;
+      color: #fff;
+    }
+  }
+  ul.optgroup {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    li {
+      &:hover {
+        background-color: #16a085;
+        color: #fff;
+      }
+      input[type="checkbox"] {
+        display: none;
+        margin: 6px;
+        &:checked {
+          background-color: #1abc9c;
+          ~ label {
+            background-color: #2980b9;
+            color: #fff;
+            &:before {
+              content: "\f14a";
+            }
+          }
         }
+      }
+
+      label {
+        font-weight: 100;
+        display: block;
+        //margin: 0px 0px 0px 15px;
+        padding-left: 15px;
+        line-height: 2em;
+        transition: all 0.3s ease;
+        &:before {
+          content: "\f096";
+          display: inline-block;
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          margin-right: 8px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
     </style>
-    </head>
-    <body>
+</head>
+<body>
 
+<div class="card">
     <h1>Dog Breed Selector</h1>
 
     <!-- Breed selector dropdown -->
     <select id="breed-selector">
         <option value="">Select a breed...</option>
-        <!-- Add breed options dynamically using JavaScript -->
+        <!-- Breed options will be populated dynamically using JavaScript -->
     </select>
-    
-    <!-- Breed name display area -->
-    <p id="breed-name"></p>
-    
-    <!-- Breed image display area -->
-    <img id="breed-image" src="" alt="Dog Breed Image">
-    
-    <script>
-        // Function to populate breed selector dropdown
-        function populateBreedSelector() {
-            const selector = document.getElementById('breed-selector');
-            // List of dog breeds 
-            const breeds = ['Labrador Retriever', 'German Shepherd', 'Golden Retriever', 'Bulldog', 'Beagle'];
-            breeds.forEach(breed => {
-                const option = document.createElement('option');
-                option.value = breed;
-                option.textContent = breed;
-                selector.appendChild(option);
-            });
-        }
-    
-        // Function to display breed name and image upon selection
-        function displayBreedInfo(breedName) {
-            const breedNameElement = document.getElementById('breed-name');
-            const breedImageElement = document.getElementById('breed-image');
-            
-            // Display breed name
-            breedNameElement.textContent = `Selected Breed: ${breedName}`;
-    
-            // Set image source based on the selected breed
-            const imageUrl = `https://placedog.net/300/200?random&breed=${breedName.replace(' ', '-')}`;
-            breedImageElement.src = imageUrl;
-        }
-    
-        // Populate breed selector dropdown on page load
-        populateBreedSelector();
-    
-        // Event listener for breed selector change
-        document.getElementById('breed-selector').addEventListener('change', function(event) {
-            const selectedBreed = event.target.value;
-            if (selectedBreed) {
-                displayBreedInfo(selectedBreed);
-            } else {
-                document.getElementById('breed-name').textContent = '';
-                document.getElementById('breed-image').src = '';
+
+    <!-- Breed information display area -->
+    <div id="breed-info" class="breed-info">
+        <!-- Breed information will be displayed here -->
+    </div>
+</div>
+
+<script>
+    // JavaScript code for fetching and displaying breed information goes here (data will be fetched from sqlite database using PHP and AJAX)
+
+    // Fetch breed information from the database using AJAX
+    function fetchBreedInfo(breed) {
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Configure the request
+        xhr.open('GET', 'fetch-breed-info.php?breed=' + breed, true);
+
+        // Set up a function to handle the response
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Parse the JSON response
+                var breedInfo = JSON.parse(xhr.responseText);
+
+                // Display the breed information
+                displayBreedInfo(breedInfo);
             }
-        });
-    </script>
-    
-    </body>
-    </html>
+        };
+
+        // Send the request
+        xhr.send();
+
+        `
+    }
+</script>
+
+</body>
+</html>
