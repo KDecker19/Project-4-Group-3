@@ -228,9 +228,58 @@ body {
         // Send the request
         xhr.send();
 
-        `
-    }
+        
+    
 </script>
+
+<script>
+    // JavaScript code for populating the breed selector dropdown goes here (data will be fetched from sqlite database using PHP and AJAX)
+
+    // Fetch breed options from the database using AJAX
+    function fetchBreedOptions() {
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Configure the request
+        xhr.open('GET', 'fetch-breed-options.php', true);
+
+        // Set up a function to handle the response
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Parse the JSON response
+                var breedOptions = JSON.parse(xhr.responseText);
+
+                // Populate the breed selector dropdown
+                populateBreedSelector(breedOptions);
+            }
+        };
+
+        // Send the request
+        xhr.send();
+    }
+
+    // Populate the breed selector dropdown with options
+
+    function populateBreedSelector(breedOptions) {
+        // Get a reference to the breed selector dropdown
+        var breedSelector = document.getElementById('breed-selector');
+
+        // Loop through the breed options and add them to the dropdown
+        for (var i = 0; i < breedOptions.length; i++) {
+            var option = document.createElement('option');
+            option.value = breedOptions[i];
+            option.textContent = breedOptions[i];
+            breedSelector.appendChild(option);
+        }
+    }
+
+
+    // Call the fetchBreedOptions function when the page loads
+
+    window.onload = fetchBreedOptions;
+</script>
+
+
 
 </body>
 </html>
