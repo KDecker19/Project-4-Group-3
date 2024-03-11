@@ -206,27 +206,15 @@ body {
 <script>
     // JavaScript code for fetching and displaying breed information goes here (data will be fetched from sqlite database using PHP and AJAX)
 
-    // Fetch breed information from the database using AJAX
-    function fetchBreedInfo(breed) {
-        // Create a new XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
+    // Configure the request to fetch information from the breed_info.php file
 
-        // Configure the request
-        xhr.open('GET', 'fetch-breed-info.php?breed=' + breed, true);
+xhr.open('GET', 'breed-info.php?breed=' + breed, true);
 
-        // Set up a function to handle the response
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Parse the JSON response
-                var breedInfo = JSON.parse(xhr.responseText);
+// Configure the request to fetch information from the breed_options.php file
 
-                // Display the breed information
-                displayBreedInfo(breedInfo);
-            }
-        };
+xhr.open('GET', 'breed-options.php', true);
 
-        // Send the request
-        xhr.send();
+
 
         `
     }
