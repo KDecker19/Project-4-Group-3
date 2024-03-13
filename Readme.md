@@ -20,25 +20,13 @@ Contents of the repository:
 
 Data folder
 Resources folder - with a test folder & train folder containing folders for images of each dog breed
-
-Visual folder - app_vis.js, vis.html, breed-options.php, breed-info.php
-
 DataBase Testing.ipynb
 
-
-
 Test.ipynb
-
-Screenshot 2024-03-07 205735.png
-
-Project_4
 
 Project_4 folder
 Project_4_Machine_Learning.ipynb
 SQLconnection3.ipynb
-dog_model.h5
-Dog_model_2.h5
-dog_images.db
 image_classification.ipynb
 
 
@@ -48,37 +36,22 @@ Readme
 
 
 
-
-
 Pre-processing:
 
-Database Testing.ipynb connects to our SQLite database and imports the dog images with their correct breed labels.
-
-SQLConnection3.ipynb
-
-dogs.db  
+Database Testing.ipynb and SQLConnection3.ipynb connect to our SQLite database, dogs.db, and imports the dog images with their correct breed labels.
 
 The test.ipynb file formats the folder names for the dog breed categories, using a for loop, to remove hyphens.
 
+
+
 Training:
 
-Model trained on 9600 images
-In test.ipynb a data generator was created and the dog images were loaded to memory.  The VGG16 model was then loaded, with some layers being unfrozen and a fully connected layer was added.  The model was then compiled with a smaller learning rate and the model was trained with more epochs.
-
-test.ipynb file
+Two separate models were trained on 9600 images.  The first was a pre-trained model which was able to predict at 86% accuracy.  In test.ipynb a data generator was created and the dog images were loaded to memory.  The VGG16 model was then loaded, with some layers being unfrozen and a fully connected layer was added.  The model was then compiled with a smaller learning rate and the model was trained with more epochs.
 
 
+Model Optimization:
 
-Model fitting  
-
-Testing:
-
-Image upload
-
-Visual folder - app_vis.js, vis.html, breed-options.php, breed-info.php > dog breed selector
-
-
-Model Optimization
+Our more successful model was run at 20 epochs.
 
 
 
