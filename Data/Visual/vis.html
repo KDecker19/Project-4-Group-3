@@ -204,32 +204,57 @@ body {
 </div>
 
 <script>
-    // JavaScript code for fetching and displaying breed information goes here (data will be fetched from sqlite database using PHP and AJAX)
+   // Function to fetch breed options from image folders
+   function fetchBreedOptionsFromFolders() {
+    // Directory containing the breed folders
+    var breedDirectory = 'Data/Resources/train';
 
-    // Fetch breed information from the database using AJAX
-    function fetchBreedInfo(breed) {
-        // Create a new XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
+    // Fetch the list of breed folders
+    fetch(breedDirectory)
+      .then(response => response.text())
+      .then(data => {
+        // Extract folder names (breed names) from directory listing
+        var folderNames = data.match(/([^/]+)\/$/gm); // Extract folder names (breed names)
+        var breedOptions = folderNames.map(folderName => folderName.replace('/', ''));
 
-        // Configure the request
-        xhr.open('GET', 'fetch-breed-info.php?breed=' + breed, true);
+        // Populate the breed selector dropdown
+        populateBreedSelector(breedOptions);
+      })
+      .catch(error => console.error('Error fetching breed options:', error));
+  }
 
-        // Set up a function to handle the response
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Parse the JSON response
-                var breedInfo = JSON.parse(xhr.responseText);
+  // Populate the breed selector dropdown with options
+  function populateBreedSelector(breedOptions) {
+    // Get a reference to the breed selector dropdown
+    var breedSelector = document.getElementById('breed-selector');
 
-                // Display the breed information
-                displayBreedInfo(breedInfo);
-            }
-        };
+    // Loop through the breed options and add them to the dropdown
+    breedOptions.forEach(function(breed) {
+      var option = document.createElement('li');
+      option.textContent = breed;
+      breedSelector.appendChild(option);
+    });
 
+<<<<<<< HEAD
         // Send the request
         xhr.send();
 
         
     
+=======
+    // Add event listener to breed selector options
+    var options = breedSelector.getElementsByTagName('li');
+    for (var i = 0; i < options.length; i++) {
+      options[i].addEventListener('click', function() {
+        // Set the selected breed value to the input field
+        document.querySelector('.chosen-value').value = this.textContent;
+      });
+    }
+  }
+
+  // Call the fetchBreedOptionsFromFolders function when the page loads
+  window.onload = fetchBreedOptionsFromFolders;
+>>>>>>> 05fdba507a668e2bc31fb0fcfff022b2e8000d4b
 </script>
 
 <script>
