@@ -38,7 +38,7 @@ Project_4_Machine_Learning.ipynb
 SQLconnection3.ipynb
 dog_model.h5
 Dog_model_2.h5
-dogs.db
+dog_images.db
 image_classification.ipynb
 
 
