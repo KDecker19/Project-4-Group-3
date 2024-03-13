@@ -13,7 +13,7 @@ Em Needles
 
 Contents of the dataset:
 Number of categories: 120 dog breeds
-Number of images: 20,580 dog images
+Number of images: 9,600 dog images
 
 
 Contents of the repository:
