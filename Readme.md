@@ -80,9 +80,7 @@ Visual folder - app_vis.js, vis.html, breed-options.php, breed-info.php > dog br
 
 Model Optimization
 
-![Loss](https://github.com/KDecker19/Project-4-Group-3/blob/main/20_epochs.png](https://github.com/KDecker19/Project-4-Group-3/blob/main/20_epochs_loss.png)
 
-![Accuracy](https://github.com/KDecker19/Project-4-Group-3/blob/main/20_epochs.png](https://github.com/KDecker19/Project-4-Group-3/blob/main/20_epochs_accuracy.png)
 
 
 References for the Original Dataset:
