@@ -37,6 +37,8 @@ Project_4 folder
 Project_4_Machine_Learning.ipynb
 SQLconnection3.ipynb
 image_classification.ipynb
+Project_4_Machine_Learning.ipynb
+Project_4_Machine_Learning_20_epochs.ipynb
 
 
 gitignore
@@ -57,14 +59,13 @@ The test.ipynb file formats the folder names for the dog breed categories, using
 
 Training:
 
-Two separate models were trained on 9600 images.  The first was a pre-trained model which was able to predict at 86% accuracy.  In test.ipynb a data generator was created and the dog images were loaded to memory.  The VGG16 model was then loaded, with some layers being unfrozen and a fully connected layer was added.  The model was then compiled with a smaller learning rate and the model was trained with more epochs.
-
+Two separate models were trained on 9600 images.  The first was a pre-trained model which was able to predict at 86% accuracy.  In test.ipynb a data generator was created and the dog images were loaded to memory.  The VGG16 model was then loaded, with some layers being unfrozen and a fully connected layer was added.  The model was then compiled with a smaller learning rate and the model was trained with more epochs.  Project_4_Machine_Learning.ipynb contains our more accurate model, with an accuracy rate of 96.2%.
 
 
 
 Model Optimization:
 
-The model was retrained at 20 epochs instead of 10 with the conclusion that the 20 epoch version was over-trained.
+In Project_4_Machine_Learning_20_epochs.ipynb the model was retrained at 20 epochs instead of 10 with the conclusion that the 20 epoch version was over-trained.
 
 
 
